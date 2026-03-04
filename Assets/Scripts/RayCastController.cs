@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class RayCastController : MonoBehaviour
 {
-    
+    public PlayerControls actions;
     public Camera camera;
     void Start()
     {
-        
+        actions = new PlayerControls();
     }
 
-    
+    void OnEnable()
+    {
+        actions.Player.Enable();
+        actions.Player.Interact.performed += OnInteractedPerformed;
+
+    }
+
+    void OnInteractedPerformed(InputAction.CallbackContext context)
+    {
+
+    }
+
     void Update()
     {
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
